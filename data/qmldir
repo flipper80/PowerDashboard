@@ -1,0 +1,5 @@
+module data
+PowerSystem 1.0 PowerSystem.qml
+J1939Simulator 1.0 J1939Simulator.qml
+PolarUtils 1.0 PolarUtils.qml
+singleton PolarUtils PolarUtils.qml
