@@ -4,7 +4,7 @@ import QtQuick.Controls 2.15
 import "components" as Components   //
 import "data" as Data               //
 import "utils" as Utils
-
+// Test pour push GITHUB
 Window {
     width: 800; height: 480 //CCPilot V700
     visible: true
