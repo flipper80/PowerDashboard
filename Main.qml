@@ -18,6 +18,10 @@ Window {
 
     property real minAngle: 5 * (-Math.PI/180)  //5 Angle in degree arc starting (converted in radian)
     property real maxAngle: 50 * (-Math.PI/180) //50 Angle in degree arc ending (converted in radian)
+
+    property real movingAngle: 40
+
+
     property real maxPower: 70                  //70 Max Power (kW)
     property real maxPowerFactor: 7.5           //7.5 Max Power scaling factor
 
@@ -108,6 +112,7 @@ Window {
     property real stripperHydPower: (stripperDeltaP  * treshingFlow)/600
     property real drumHydPower: (drumDeltaP * treshingFlow)/600
     property real chargePower: (chargePressure * chargeFlow) /600                       //Charge pump power (kW)
+
     property real treshingHydPower: beaterHydPower + stripperHydPower + drumHydPower    //Treshing system total power (kW)
 
     //Mechanical
@@ -122,14 +127,17 @@ Window {
 
     property real treshingTorque: beaterTorque+stripperTorque+drumTorque                //Sum of beater, stripper, drum Torque in Nm
     property real pseudoMecSpeed: treshingHydPower*1000 /treshingTorque                 //Used for point on Power Arc calculation
-    property real treshingHWratio: treshingTorque/pseudoMecSpeed                        // will be used to drive movingAngle
+
+    property real treshingHWratio: (treshingTorque/pseudoMecSpeed)*2.7                  // will be used to drive movingAngle
 
 
     //Loading background
     Components.AxisSystem {}
 
     //Loading powerArc
-    Components.PowerArc{}
+    Components.PowerArc{
+     //   property real treshingHWratio: (treshingTorque/pseudoMecSpeed)*2.7
+    }
 
     //Calling Hydraulic power rectangles (Left)
     property real chargeXfactor:1.3
@@ -203,6 +211,7 @@ Window {
     property real beaterRectangleXfactor:1.1
     property real beaterRectangleYfactor:1
 
+// Calling Drum mechanival rectangle
     Components.ParametricRect
         {
             rectWidth: drumRectWidth//drumRPM * drumRectangleXfactor
@@ -216,7 +225,7 @@ Window {
             fontSize: 12
             visible: true
         }
-
+// Calling Stripper mechanical rectangle
     Components.ParametricRect
         {
             rectWidth: stripperRPM /stripperRectangleXfactor
@@ -231,6 +240,7 @@ Window {
             fontSize: 12
             visible: true
         }
+// Calling Beater mechanical rectangle
     Components.ParametricRect
         {
             rectWidth: beaterRPM /beaterRectangleXfactor
@@ -245,21 +255,21 @@ Window {
             fontSize: 12
             visible:true
         }
-    }
+
 /////////////TEMPORARY TESTS (to be uncommented///////////////
- //   Column {
- //           anchors.left: parent.left
- //           anchors.margins: 30  // Optional, remove margins if needed
- //           spacing: 8
+   Column {
+            anchors.left: parent.left
+            anchors.margins: 100  // Optional, remove margins if needed
+            spacing: 8
  //           Text {
  //               text: mecOriginX
  //               font.pixelSize: 14            }
  //           Text {
  //               text: mecOriginY
  //               font.pixelSize: 14            }
- //           Text {
- //               text: "Treshing Power: " + treshingHydPower.toFixed(2) +" kW"
- //               font.pixelSize: 14           }
+           Text {
+                text: "Treshing Power: " + treshingHydPower.toFixed(2) +" kW"
+                font.pixelSize: 14           }
  //           Text {
  //               text: "Drum Power " + drumHydPower+ " kW"
  //               font.pixelSize: 14           }
@@ -269,12 +279,21 @@ Window {
  //           Text {
  //               text: "drum speed " + drumSpeed.toFixed(2) +"Rd/s "+ drumRPM + " RPM"
  //               font.pixelSize: 14           }
- //           Text {
- //               text: "pseudo mechanical speed" +" "+ pseudoMecSpeed.toFixed(2)  + " ??"
- //               font.pixelSize: 14           }
- //           Text {
- //               text: "Total treshing torque" +" "+treshingTorque.toFixed(2)  + " Nm"
- //               font.pixelSize: 14           }
+            Text {
+                text: "pseudo mechanical speed" +" "+ pseudoMecSpeed.toFixed(2)  + " ??"
+                font.pixelSize: 14           }
+            Text {
+                text: "Total treshing torque" +" "+treshingTorque.toFixed(2)  + " Nm"
+                font.pixelSize: 14           }
+            Text {
+                text: "movingAngle"+" " +movingAngle
+                font.pixelSize: 14
+            }
+            Text {
+                text: "treshingHWratio" +" "+treshingHWratio.toFixed(0)
+                font.pixelSize: 14
+            }
+
  //           Text {
  //               text: "Beater torque" +" "+beaterTorque.toFixed(2)  + " Nm"
  //               font.pixelSize: 14           }
@@ -294,7 +313,6 @@ Window {
  //               text: "treshing flow" +" "+ treshingFlow.toFixed(2)  + " l/mn"
  //               font.pixelSize: 14           }
 //
- //   }
-
-
+    }
+}
 

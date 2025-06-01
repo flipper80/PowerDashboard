@@ -1,9 +1,7 @@
 module Components
 Animation 1.0 Animation.qml
-
 AxisSystem 1.0 AxisSystem.qml
 PowerArc 1.0 PowerArc.qml
-WindowTest 1.0 WindowTest.qml
 ParametricRect ParametricRect.qml
 HydRectangle HydRectangle.qml
-
+PowerArcBackup PowerArcBackup.qml

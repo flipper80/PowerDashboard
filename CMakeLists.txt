@@ -34,6 +34,9 @@ qt_add_qml_module(appPowerDashboard
         QML_FILES utils/TriangularSignal.qml
         QML_FILES components/Animation.qml
         RESOURCES .gitignore
+        QML_FILES
+        QML_FILES components/PowerArcBackup.qml
+        QML_FILES MainBackup.qml
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

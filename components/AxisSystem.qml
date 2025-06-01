@@ -17,8 +17,7 @@ Item {
  //   property real minAngle: 5 * (-Math.PI/180)//Angle in degree arc starting (converted in radian)
  //   property real maxAngle: 50 * (-Math.PI/180)//Angle in degree arc ending (converted in radian)
 
- //   property real maxPower: 70 //Max Power (kW)
- //   property real maxPowerFactor: 7.5       //Max Power scaling factor
+
     property real maxPowerRadius: maxPower * maxPowerFactor//Max Power Radius
 
     property real maxPressure: 380// Max pressure in bar
