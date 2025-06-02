@@ -103,6 +103,9 @@ Item {
                        ctx.fillText("DRUM(test)",500,150)// to be modified...
 
             /////////////////////////////////////
+          // Update canvas when values change
+             onDynamicAngleChanged: requestPaint()
+             onDynamicRadiusChanged: requestPaint()
 
         }
          /////Timer for simulating variable inputs

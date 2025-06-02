@@ -137,6 +137,12 @@ Window {
     //Loading powerArc
     Components.PowerArc{
      //   property real treshingHWratio: (treshingTorque/pseudoMecSpeed)*2.7
+        id: powerArc
+            anchors.fill: parent
+
+            // Connect to calculations from Main
+          //  dynamicAngle: minAngle + (maxAngle - minAngle) * treshingHWratio
+          //  dynamicRadius: dynamicRadiusBase
     }
 
     //Calling Hydraulic power rectangles (Left)
